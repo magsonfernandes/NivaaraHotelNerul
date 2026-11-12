@@ -13,6 +13,7 @@ const PAGE_READY_TIMEOUT_MS = 12_000;
  */
 export function PageMediaGate({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const isBookingPage = pathname === "/booking";
   const containerRef = useRef<HTMLDivElement>(null);
   const hasRevealedOnce = useRef(false);
   const [ready, setReady] = useState(false);
@@ -20,6 +21,14 @@ export function PageMediaGate({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
+
+    // Booking embeds can wait on cross-origin resources indefinitely.
+    // Keep the booking route visible without blocking on page media.
+    if (isBookingPage) {
+      hasRevealedOnce.current = true;
+      setReady(true);
+      return;
+    }
 
     // After the first reveal, never hide the page or put an overlay over clicks.
     if (hasRevealedOnce.current) {
@@ -59,18 +68,18 @@ export function PageMediaGate({ children }: { children: React.ReactNode }) {
       cancelled = true;
       window.clearTimeout(timeoutId);
     };
-  }, [pathname]);
+  }, [pathname, isBookingPage]);
 
   return (
     <>
       <div
         ref={containerRef}
-        className={ready || hasRevealedOnce.current ? "page-media-ready" : "page-media-loading"}
-        aria-busy={!ready && !hasRevealedOnce.current}
+        className={ready || hasRevealedOnce.current || isBookingPage ? "page-media-ready" : "page-media-loading"}
+        aria-busy={!ready && !hasRevealedOnce.current && !isBookingPage}
       >
         {children}
       </div>
-      {!ready && !hasRevealedOnce.current ? (
+      {!ready && !hasRevealedOnce.current && !isBookingPage ? (
         <div
           className="fixed inset-0 z-[9999] bg-white"
           aria-live="polite"
