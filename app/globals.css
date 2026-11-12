@@ -94,6 +94,16 @@
   opacity: 0;
 }
 
+/* A cross-origin booking embed must stay visible before client hydration. */
+.page-media-loading:has(iframe[src^="https://nivaara.axisrooms.com/"]) {
+  opacity: 1;
+}
+
+.page-media-loading:has(iframe[src^="https://nivaara.axisrooms.com/"])
+  + [aria-label="Loading page"] {
+  display: none !important;
+}
+
 .page-media-ready {
   opacity: 1;
 }
