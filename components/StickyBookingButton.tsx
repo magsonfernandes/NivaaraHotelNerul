@@ -66,8 +66,6 @@ export function StickyBookingButton() {
         <div className="mobile-book-cluster__icons">{contactIcons}</div>
         <a
           href={href}
-          target="_blank"
-          rel="noopener noreferrer"
           aria-label="Book your stay at Nivaãra"
           className="mobile-book-cluster__book"
         >
@@ -80,8 +78,6 @@ export function StickyBookingButton() {
         <div className="flex flex-col items-center gap-2.5">{contactIcons}</div>
         <a
           href={href}
-          target="_blank"
-          rel="noopener noreferrer"
           aria-label="Book your stay at Nivaãra"
           className="inline-flex items-center justify-center bg-gold px-6 py-4 font-body text-xs font-medium uppercase tracking-[0.14em] text-white shadow-[0_12px_32px_rgba(198,168,106,0.45)] transition-all duration-300 hover:bg-[#b89755] hover:shadow-[0_16px_36px_rgba(198,168,106,0.5)]"
         >
