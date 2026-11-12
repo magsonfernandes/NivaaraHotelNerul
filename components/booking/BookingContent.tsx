@@ -106,6 +106,28 @@ export function BookingContent() {
     router.push(`/booking/details?${params.toString()}`);
   }
 
+  if (!booking) {
+    return (
+      <section
+        aria-label="Book your stay"
+        className="w-full bg-white"
+        style={{ minHeight: "100vh" }}
+      >
+        <iframe
+          title="Nivaãra booking engine"
+          src="https://nivaara.axisrooms.com/search?bookingEngineId=5044"
+          referrerPolicy="strict-origin-when-cross-origin"
+          style={{
+            display: "block",
+            width: "100%",
+            minHeight: "100vh",
+            border: 0,
+          }}
+        />
+      </section>
+    );
+  }
+
   return (
     <BookingLayout step={1}>
       {booking ? (
