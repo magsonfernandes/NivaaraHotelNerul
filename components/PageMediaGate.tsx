@@ -74,7 +74,11 @@ export function PageMediaGate({ children }: { children: React.ReactNode }) {
     <>
       <div
         ref={containerRef}
-        className={ready || hasRevealedOnce.current || isBookingPage ? "page-media-ready" : "page-media-loading"}
+        className={
+          ready || hasRevealedOnce.current || isBookingPage
+            ? "page-media-ready"
+            : "page-media-loading"
+        }
         aria-busy={!ready && !hasRevealedOnce.current && !isBookingPage}
       >
         {children}
