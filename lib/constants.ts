@@ -19,7 +19,7 @@ export const CORPORATE_SEARCH_DESTINATIONS = [
 
 /** External AxisRooms booking engine — Nivaãra Book Now */
 export const AXISROOMS_BOOKING_URL =
-  "https://be.axisrooms.com/search?bookingEngineId=5044";
+  "https://nivaara.ghdhotels.in/booking";
 
 export const AXISROOMS_PRODUCT_ID = "214632";
 export const AXISROOMS_BOOKING_ENGINE_ID = "5044";
